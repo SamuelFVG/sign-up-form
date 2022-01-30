@@ -6,7 +6,7 @@ const submitBtn = document.querySelector('button');
 let shouldSubmit = false;
 
 function validateName() {
-    for (let i = 0; i <= 3; i += 3){
+    for (let i = 0; i <= 3; i += 3){ //i will be one and three
         inputs[i].value = inputs[i].value.trim();
         if (inputs[i].value === '') {
             statusTexts[i].textContent = 'Name should not be empty!';
