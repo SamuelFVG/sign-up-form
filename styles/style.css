@@ -94,15 +94,19 @@ ul {
 }
 li{
     flex: 0 0 0;
+    position: relative;
 }
 label {
-    display: block;
     letter-spacing: 1px;
     word-spacing: 2px;
     font-size: 0.8rem;
     color: #222222;
 }
+i.required{
+    color: darkred;
+}
 input{
+    display: block;
     margin-top: 2px;
     border-radius: 5px;
     border: 1px solid #cccccc;
@@ -113,6 +117,32 @@ input:focus {
     border: 1px solid #679b9b;
     box-shadow: 0 0 5px -2px black;
 
+}
+
+i.status-icon {
+    position: absolute;
+    left: 91%;
+    bottom: 8.5%;
+    font-style: normal;
+}
+i.status-icon.valid::after {
+    content: '✓';
+    color: green;
+}
+i.status-icon.invalid::after {
+    content: 'x';
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: darkred;
+}
+
+div.status {
+    margin-top: 1px;
+    position: absolute;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    font-size: 0.8rem;
+    color: rgb(177, 0, 0);
 }
 
 #sumbit-container {
