@@ -62,8 +62,6 @@ function validatePassword() {
         const hasLowerCase = inputs[2].value.match(/[a-z]/g);
         const hasNumber = inputs[2].value.match(/[0-9]/g);
         const isGreaterThan6 = inputs[2].value.length >= 6;
-        /* prompt();
-        alert(`${hasUpperCase}\n${hasLowerCase}\n${hasNumber}\n${isGreaterThan6}`); */
 
         if (!isGreaterThan6) {
             statusTexts[2].textContent = 'Should have at least six characters';
@@ -92,7 +90,7 @@ function validatePassword() {
 
 function validateConfirmedPassword() {
     if(!checkEmptiness(5)) {   
-        if (statusTexts[2].textContent != '') {
+        if (statusTexts[2].textContent != '' || inputs[2].value == '') {
             statusTexts[5].textContent = "Invalid password";
             statusIcons[5].classList.add('invalid');
         }
@@ -107,6 +105,24 @@ function validateConfirmedPassword() {
     else return true;
 }
 
+function validateNumber() {
+    if (!checkEmptiness(4)) {
+        const hasOnlyNumbers = inputs[4].value.match(/[0-9]*/gi);
+        if (hasOnlyNumbers[0] != inputs[4].value) {
+            statusTexts[4].textContent = "Should have only numbers";
+            statusIcons[4].classList.add('invalid');
+        } else if(inputs[4].value.length != 9){
+            statusTexts[4].textContent = "Should have 9 digits";
+            statusIcons[4].classList.add('invalid');
+        }
+        else {
+            statusIcons[4].classList.add('valid');
+        }
+    }
+    if (statusTexts[4].textContent != '') return false;
+    else return true;
+}
+
 function validate(event) {
     for (let i = 0; i < statusTexts.length; i++) {
         statusTexts[i].textContent = '';
@@ -116,9 +132,10 @@ function validate(event) {
     const nameValidation = validateName(),
         emailValidation = validateEmail(), 
         passwordValidation = validatePassword(),
-        passwordConfirmValidation = validateConfirmedPassword();
+        passwordConfirmValidation = validateConfirmedPassword(),
+        numberValidation = validateNumber();
 
-    if (nameValidation && emailValidation && passwordValidation && passwordConfirmValidation) shouldSubmit = true;
+    if (nameValidation && emailValidation && passwordValidation && passwordConfirmValidation && numberValidation) shouldSubmit = true;
     if(!shouldSubmit) event.preventDefault();
 }
 
